@@ -1,0 +1,63 @@
+.login {
+    &-container {
+        --background: none;
+        background: url('../../../assets/imgs/login-bg.png');
+        background-repeat: no-repeat ;
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.exl-logo{
+    &-container{
+        text-align:center;
+    }
+
+    &-image{
+        width: 35%;
+        height: 80px;
+        margin-top: 10%;
+    }
+}
+
+.form-container{
+    margin-top:35%;
+}
+.container-item-username{
+    --background: transparent;
+    color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+    border-bottom :1px solid white;
+    
+}
+.container-item-password{
+    --background: transparent;
+    color: white;
+   margin-left: 10%;
+   margin-right: 10%;
+   margin-top: 20px;
+   border-bottom :1px solid white;
+}
+
+.button-submit{
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+   
+} 
+.container-forgot-password-link{
+    margin-top: 5%;
+    text-align: right;
+    margin-right:10%;
+} 
+.link-forget-password{
+    color:#f08233;
+    font-size: 1.5rem; 
+    font-weight: normal;
+}
+
+    
+ 
+

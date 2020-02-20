@@ -1,0 +1,35 @@
+<ion-content class="login login-container">
+
+  <div class="exl-logo-container">
+    <img src="../../../assets/imgs/exl-logo.png" class="exl-logo-image">
+  </div>
+
+
+  <div class="form-container">
+    <ion-item class="container-item-username">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input autofocus class="login-input" disabled=false maxlength="20" type="text"
+      [(ngModel)]="userName" name="userName">
+    </ion-input>
+    </ion-item>
+    <ion-item class="container-item-password">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input class="login-input" autocomplete="off" type="password" disabled=false maxlength="50"
+      [(ngModel)]="password" name="password">
+    </ion-input>
+    </ion-item>
+    <ion-button expand="block" class="button-submit" (click)="onPressLogin()">SUBMIT</ion-button>
+  </div>
+  <div class="container-forgot-password-link">
+    <u class="link-forget-password"
+    >Forgot Password?</u>
+  </div>
+  <!-- <div class="row">
+    <div class="col" ng-click="showPopup()">
+      <u style="color:#f08233;font-size: 110%; font-weight: normal;"
+        >Forgot Password?</u
+      >
+    </div>
+  </div> -->
+
+</ion-content>
