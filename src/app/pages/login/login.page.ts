@@ -4,6 +4,7 @@ import { ProgressBarService } from 'src/app/services/progress-bar.service';
 import { Router } from '@angular/router';
 import { Constants } from 'src/app/utils/Constants';
 import { ToastService } from 'src/app/services/toast.service';
+import { UserDetailService } from 'src/app/services/user-detail.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,11 @@ export class LoginPage implements OnInit {
   passWord: string = "egregregergerg";
   token: string;
      
-  constructor(public apiCtrl: NetworkApiService,public progresBarService: ProgressBarService,private router: Router,private toastCtrl:ToastService) { }
+  constructor(public apiCtrl: NetworkApiService,
+    public progresBarService: ProgressBarService,
+    private router: Router,
+    private toastCtrl:ToastService, 
+    private userDetailService: UserDetailService) { }
 
   ngOnInit() {
     console.log("ngOnInit LoginPage");
@@ -53,9 +58,27 @@ export class LoginPage implements OnInit {
     this.progresBarService.show();
 
     try {
-      let resposeData = await this.apiCtrl.authenticateUser(this.userName.toUpperCase().trim(), this.passWord, "password")
-      this.progresBarService.hide();
-       
+      let responseData = await this.apiCtrl.authenticateUser(this.userName.toUpperCase().trim(), this.passWord, "password")
+
+      console.log("responseData:- " , responseData); 
+
+      if(responseData.data.access_token){
+        let userDetails = await this.apiCtrl.callGetUserData(responseData.data.userName.trim(),responseData.data.access_token);
+        this.progresBarService.hide();
+
+        console.log("UserData :- " , userDetails);
+
+        
+
+
+
+      }
+
+
+    //  {"error":"invalid_grant","error_description":"You seemed to have entered the wrong username / password."}
+     // this.userDetailService.loginResponseData = resposeData;
+    //  this.progresBarService.hide();
+     // this.router.navigate(['/set-mpin'], { replaceUrl: true });       
     } catch (error) {
       this.progresBarService.hide();
       var responseData: any;
@@ -65,11 +88,16 @@ export class LoginPage implements OnInit {
       if (responseData) {
         var data = JSON.parse(JSON.stringify(responseData))
         console.log("Login error HTTP::" + data.error_description);
+
         this.toastCtrl.showSimpleToast(data.error_description);
       } else {
         this.toastCtrl.showSimpleToast(error);
       }
     }
   }
+
+
+
+
 
 }

@@ -14,6 +14,18 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'set-mpin',
+    loadChildren: () => import('./pages/set-mpin/set-mpin.module').then( m => m.SetMpinPageModule)
+  },
+  {
+    path: 'enter-mpin',
+    loadChildren: () => import('./pages/enter-mpin/enter-mpin.module').then( m => m.EnterMpinPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
 ];
 

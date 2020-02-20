@@ -13,6 +13,10 @@ import { NetworkApiService } from './services/network-api.service';
 import { ProgressBarService } from './services/progress-bar.service';
 import { ToastService } from './services/toast.service';
 import { Network } from '@ionic-native/network/ngx';
+import { UserDetailService } from './services/user-detail.service';
+import { AppStorageService } from './services/app-storage.service';
+import { Device } from '@ionic-native/device/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +31,11 @@ import { Network } from '@ionic-native/network/ngx';
     StatusBar,
     SplashScreen,
     NetworkApiService,
+    UserDetailService,
     ProgressBarService,
+    HTTP,
+    AppStorageService,
+    Device,
     Network,
     ToastService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
