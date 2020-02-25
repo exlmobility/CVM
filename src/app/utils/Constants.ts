@@ -2,8 +2,8 @@ export class Constants {
 
     //Api BASE URLS 
     public static readonly BASE_URL: String = "https://exlmobility-uat.exlservice.com/CVMAPI";
-    
- 
+
+
 
     //Validation Messages
     public static readonly MSG_USENAME_EMPTY = 'Username should not be empty';
@@ -12,7 +12,7 @@ export class Constants {
     public static readonly MSG_INVALID_PASSWORD = 'Invalid Password';
     public static readonly MSG_UNSAFE_VALUE = 'It seems you have entered an unsafe input.Please enter a valid input.';
     public static readonly MSG_INTERNET_ERROR = "No internet connectivity";
-  
+
 
     //SSL Pinning stuff-UAT
     public static readonly SERVER_URL: String = "https://exlmobility-uat.exlservice.com";
@@ -26,5 +26,7 @@ export class Constants {
     // invalid certificate for testing
     //  public static readonly SERVER_FINGERPRINT: any = "C6 2D 93 39 C2 9F 82 8E 1E BE FD DC 2D 7B 7D 24 31 1A 59 E1 0B 4B C8 04 6E 21 F6 FA A2 37 11 45";
 
+
+    public static readonly BASE_IMAGE_URL = 'https://exlmobility.exlservice.com/CVMAPI/CVM_Images/'
 
 }

@@ -4,7 +4,7 @@ import { ProgressBarService } from 'src/app/services/progress-bar.service';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { AppStorageService } from 'src/app/services/app-storage.service';
- 
+
 @Component({
   selector: 'app-set-mpin',
   templateUrl: './set-mpin.page.html',
@@ -15,7 +15,7 @@ export class SetMpinPage implements OnInit {
   setPasscode: string = "";
   rowInput: boolean = true;
 
- 
+
   userName: string = "";
   passWord: string = "";
   token: string;
@@ -25,10 +25,10 @@ export class SetMpinPage implements OnInit {
   lanId: string;
 
   isWrongPin: boolean = false;
-  constructor(private userDetailService: UserDetailService, 
+  constructor(private userDetailService: UserDetailService,
     public progresBarService: ProgressBarService,
-    private toastCtrl:ToastService,
-    private appStorage : AppStorageService,
+    private toastCtrl: ToastService,
+    private appStorage: AppStorageService,
     private router: Router) { }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class SetMpinPage implements OnInit {
       setTimeout(() => {
         this.appStorage.setUserMPIN(this.setPasscode);
         this.progresBarService.hide();
-       // this.router.navigate(['/home'], { replaceUrl: true });
+        // this.router.navigate(['/home'], { replaceUrl: true });
       }, 1000);
     }
   }
@@ -89,7 +89,7 @@ export class SetMpinPage implements OnInit {
   async  saveUserData() {
     let resposeData = this.userDetailService.loginResponseData;
 
-    
+
 
     this.token = resposeData.data.access_token;
     this.employee_no = resposeData.data.Employee_Number;
@@ -97,12 +97,8 @@ export class SetMpinPage implements OnInit {
     this.fullName = resposeData.data.Name;
     this.lanId = resposeData.data.UserName;
     this.userDetailService.authToken = this.token;
-    this.userDetailService.userLanId = this.lanId;
-    this.userDetailService.userDesignation = this.designation;
-    this.userDetailService.userFullName = this.fullName;
-    this.userDetailService.employeeNumber = this.employee_no;
     await this.saveToStorage();
-     
+
   }
   private saveToStorage() {
     this.appStorage.setAuthToken(this.token);

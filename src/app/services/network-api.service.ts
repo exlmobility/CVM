@@ -11,7 +11,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 export class NetworkApiService {
 
   isConnectedToNetwork = true;
-  constructor(private network: Network, 
+  constructor(private network: Network,
     private platform: Platform, private http: HTTP,
     private userDetailCtrl: UserDetailService) {
 
@@ -78,11 +78,11 @@ export class NetworkApiService {
       user: userData,
       metaData: this.userDetailCtrl.getMetaData()
     };
-    
+
     if (!this.isConnectedToNetwork) {
       return Promise.reject("No internet connectivity")
     }
-    return this.postData("/api/APP_ClientVisit/UserData",authToken,param);
+    return this.postData("/api/APP_ClientVisit/UserData", authToken, param);
   }
 
   // async postData(params: any, authToken: string, api_name: string): Promise<any> {
@@ -95,7 +95,7 @@ export class NetworkApiService {
 
   // }
 
-  async postData(endPoint:string,authToken:string, data:any) {
+  async postData(endPoint: string, authToken: string, data: any) {
 
     // try {
     //   var isSecure = await SSL.isSecure();
@@ -130,7 +130,7 @@ export class NetworkApiService {
 
 
   }
-  
+
 
   async getData(authToken: string, api_name: string): Promise<any> {
     if (!this.isConnectedToNetwork) {
@@ -140,6 +140,17 @@ export class NetworkApiService {
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     return axios.get(Constants.BASE_URL + api_name);
 
+  }
+
+  async aboutUs() {
+    try {
+      console.log("API CALLED");
+      let response = await this.postData('/api/APP_ClientVisit/aboutExl', "", {});
+      return Promise.resolve(response);
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(error);
+    }
   }
 
 

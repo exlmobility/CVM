@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>About Us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="data" class="main-div">
+    <img class="exl_logo_Image" onerror="this.src='../../../assets/imgs/exl_placeholder.png'" src="imageURL" />
+    <ion-text>
+      <h3>{{data.Title}}</h3>
+    </ion-text>
+    <p style="text-align: justify;font-size: 11px;line-height: 1.5em;">{{data.Description}}</p>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" style="margin: 0px" mode="md">CONTINUE</ion-button>
+</ion-footer>
