@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'visitor-profile',
     loadChildren: () => import('./pages/visitor-profile/visitor-profile.module').then(m => m.VisitorProfilePageModule)
+  },
+  {
+    path: 'emergency-contacts',
+    loadChildren: () => import('./pages/emergency-contacts/emergency-contacts.module').then(m => m.EmergencyContactsPageModule)
   }
 ];
 

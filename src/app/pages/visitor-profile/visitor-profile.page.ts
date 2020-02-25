@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisitorProfilePage implements OnInit {
 
+  description = "Utkarsh is taking the KT of this application from nasib. Utkarsh is taking the KT of this application from nasib. Utkarsh is taking the KT of this application from nasib. Utkarsh is taking the KT of this application from nasib. Utkarsh is taking the KT of this application from nasib."
   constructor() { }
 
   ngOnInit() {
