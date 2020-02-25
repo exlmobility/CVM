@@ -20,6 +20,8 @@ export class UserDetailService {
   USER_TYPE :string ="";
  
   loginResponseData: any;
+
+  userDetailsData:any;
   
   metaData: any;
 
@@ -40,25 +42,4 @@ export class UserDetailService {
     return this.metaData;
   }
 }
-
-
-// getMetaData: function() {
-
-//   var device = $cordovaDevice.getDevice();
-//   var appVersion = "0.0.0";
-//   var ipAddress = "";
-
-//   cordova.getAppVersion(function(version) {
-//       appVersion = version;
-//   });
-
-//   var metaData = {
-//       deviceType: device.platform,
-//       appVer: appVersion,
-//       deviceId: device.uuid,
-//       networkType: "",
-//       ipAddress: ipAddress
-//   };
-
-//   return metaData;
-// }
+ 

@@ -58,20 +58,24 @@ export class LoginPage implements OnInit {
     this.progresBarService.show();
 
     try {
-      let responseData = await this.apiCtrl.authenticateUser(this.userName.toUpperCase().trim(), this.passWord, "password")
+      let responseData = await this.apiCtrl.authenticateUser(this.userName.toUpperCase().trim(), this.passWord);
 
-      console.log("responseData:- " , responseData); 
+      console.log("responseData:- " , JSON.parse(responseData.data)); 
+      let response = JSON.parse(responseData.data);
+      this.userDetailService.authToken = response.access_token;
+      if(response.access_token){
+        let userDetails = await this.apiCtrl.callGetUserData(response.userName.trim(),response.access_token);
+ 
+        console.log("userDetails", userDetails.response.isSuccess);
 
-      if(responseData.data.access_token){
-        let userDetails = await this.apiCtrl.callGetUserData(responseData.data.userName.trim(),responseData.data.access_token);
+
+        if(userDetails.response.isSuccess == "true"){
+          console.log("### :- " ,userDetails.response.data.userDetail);
+          this.userDetailService.userDetailsData = userDetails.response.data.userDetail;
+        }
         this.progresBarService.hide();
-
+        this.router.navigate(['/set-mpin'], { replaceUrl: true });
         console.log("UserData :- " , userDetails);
-
-        
-
-
-
       }
 
 

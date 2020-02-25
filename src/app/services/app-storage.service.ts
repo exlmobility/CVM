@@ -13,6 +13,13 @@ export class AppStorageService {
   DESIGNATION: string = "DESIGNATION";
   ISLOGGEDIN: string = "ISLOGGEDIN";
   MPIN: string = "MPIN";
+  LOCATION:string = "LOCATION";
+  COUNTRY:string = "COUNTRY";
+  USER_TYPE :string = "USER_TYPE";
+  EMAIL_ID:string = "EMAIL_ID";
+  GRADE:string = "GRADE";
+
+
 
   constructor() { }
 
@@ -57,6 +64,50 @@ export class AppStorageService {
   getUserMPIN() {
     return this.getItem(this.MPIN);
   }
+
+
+    // LOCATION: "Noida-Center3"
+    // COUNTRY: "India"
+    // USER_TYPE: "1"
+    // EMAIL_ID: "ERPDBA.Support@exlservice.com"
+    // GRADE: "C2"
+
+    setUserLocation(location: string) {
+      return this.setItem(this.LOCATION, location)
+    }
+    getUserLocation() {
+      return this.getItem(this.LOCATION)
+    }
+
+    setUserCountry(country: string) {
+      return this.setItem(this.COUNTRY, country)
+    }
+    getUserCountry() {
+      return this.getItem(this.COUNTRY)
+    }
+
+    setUserType(userType: string) {
+      return this.setItem(this.USER_TYPE, userType)
+    }
+    getUserType() {
+      return this.getItem(this.USER_TYPE)
+    }
+
+    setUserEmailId(email: string) {
+      return this.setItem(this.EMAIL_ID, email)
+    }
+    getUserEmailId() {
+      return this.getItem(this.EMAIL_ID)
+    }
+
+    setUserGrade(grade: string) {
+      return this.setItem(this.GRADE, grade)
+    }
+    getUserGrade() {
+      return this.getItem(this.ISLOGGEDIN)
+    }
+
+
   setUserLoggedin(isloggedIn: string) {
     return this.setItem(this.ISLOGGEDIN, isloggedIn)
   }
