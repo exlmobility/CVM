@@ -11,7 +11,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 export class NetworkApiService {
 
   isConnectedToNetwork = true;
-  constructor(private network: Network,
+  constructor(private network: Network, 
     private platform: Platform, private http: HTTP,
     private userDetailCtrl: UserDetailService) {
 
@@ -50,22 +50,22 @@ export class NetworkApiService {
 
 
 
-  async authenticateUser(userName: any, passWord: any, grantType: any) {
-
-
-    const params = new URLSearchParams();
-    params.append('username', userName);
-    params.append('password', passWord);
-    params.append('grant_type', grantType);
-
-    axios.defaults.headers.post['Accept'] = 'application/json';
-    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
+  async authenticateUser(userName: any, passWord: any) {
     if (!this.isConnectedToNetwork) {
       return Promise.reject("No internet connectivity")
     }
-    return axios.post(Constants.BASE_URL + "/token", params);
+    var data = {
+      username : userName,
+      password: passWord,
+      grant_type: "password"
+    }
 
+    let headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+  }
+  this.http.setDataSerializer('urlencoded');
+  this.http.setRequestTimeout(30);
+  return this.http.post(Constants.BASE_URL + "/token",data,headers);
   }
 
 
@@ -78,33 +78,15 @@ export class NetworkApiService {
       user: userData,
       metaData: this.userDetailCtrl.getMetaData()
     };
-
+    
     if (!this.isConnectedToNetwork) {
       return Promise.reject("No internet connectivity")
     }
-    return this.postData("/api/APP_ClientVisit/UserData", authToken, param);
+    return this.postData("/api/APP_ClientVisit/UserData",authToken,param);
   }
 
-  // async postData(params: any, authToken: string, api_name: string): Promise<any> {
-  //   if (!this.isConnectedToNetwork) {
-  //     return Promise.reject("No internet connectivity")
-  //   }
-  //   axios.defaults.headers.common['Authorization'] = 'bearer ' + authToken;
-  //   axios.defaults.headers.post['Content-Type'] = 'application/json';
-  //   return axios.post(Constants.BASE_URL + api_name, params);
 
-  // }
-
-  async postData(endPoint: string, authToken: string, data: any) {
-
-    // try {
-    //   var isSecure = await SSL.isSecure();
-    //   if (!isSecure) {
-    //     return Promise.reject("CONNECTION_NOT_SECURE");
-    //   }
-    // } catch (error) {
-    //   return Promise.reject(error)
-    // }
+ async postData(endPoint:string,authToken:string, data:any) {
 
     const options = {
       method: 'post',
@@ -128,18 +110,6 @@ export class NetworkApiService {
       return Promise.reject(error);
     }
 
-
-  }
-
-
-  async getData(authToken: string, api_name: string): Promise<any> {
-    if (!this.isConnectedToNetwork) {
-      return Promise.reject("No internet connectivity")
-    }
-    axios.defaults.headers.common['Authorization'] = 'bearer ' + authToken;
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
-    return axios.get(Constants.BASE_URL + api_name);
-
   }
 
   async aboutUs() {
@@ -152,6 +122,5 @@ export class NetworkApiService {
       return Promise.reject(error);
     }
   }
-
 
 }
