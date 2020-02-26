@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'emergency-contacts',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -38,6 +38,14 @@ const routes: Routes = [
   {
     path: 'emergency-contacts',
     loadChildren: () => import('./pages/emergency-contacts/emergency-contacts.module').then(m => m.EmergencyContactsPageModule)
+  },
+  {
+    path: 'make-request',
+    loadChildren: () => import('./pages/make-request/make-request.module').then(m => m.MakeRequestPageModule)
+  },
+  {
+    path: 'feedback',
+    loadChildren: () => import('./pages/feedback/feedback.module').then(m => m.FeedbackPageModule)
   }
 ];
 
