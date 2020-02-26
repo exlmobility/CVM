@@ -1,0 +1,26 @@
+.newbackgroundcolor {
+    --background: #3c3c41;
+    background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);
+    color: #fff;
+    border-color: #111;
+    //--background: linear-gradient(to right, #0056ec, #1157ec, #1b58ed, #2359ed, #295aee, #325bef, #395bef, #405cf0, #495df0, #525ef1, #595ff1, #6060f1);
+  }
+  .iconMenu {
+    width: 24px;
+    height: 24px;
+    color: white;
+    font-size: 1.7rem;
+    font-family: 'Monserrat-medium';
+  }
+  
+  .homeTitle {
+    color: white;
+    font-family: 'Monserrat-medium';
+  }
+
+.lable-sub-title {
+    font-size: 12px;
+    color: white;
+    font-family: 'Monserrat-medium';
+  }
+ 
