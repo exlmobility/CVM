@@ -6,7 +6,7 @@
 
 <ion-content style="--background: #EDF2FB">
 
-  <ion-card class="list-item-card" (click)="funItemClickEvent(item)">
+  <ion-card class="list-item-card" (click)="funItemClickEvent(item)" *ngFor="let item of visitorsData">
     <ion-grid class="card-grid">
       <ion-row>
 
@@ -16,12 +16,12 @@
 
         <ion-col size="9">
           <div style="color: #000000;font-size:16px; margin-bottom: 4px">
-            <span>Utkarsh Joshi</span>
+            <span>{{item.fullName}}</span>
           </div>
           <div style="color: #7a7a7c;font-size:12px; margin-top: 4px">
-            <span>Designation</span>
+            <span>{{item.designation}}</span>
           </div>
-          <div class=" text-description">{{description}}</div>
+          <div class=" text-description">{{item.description}}</div>
         </ion-col>
 
       </ion-row>

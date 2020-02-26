@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkApiService } from 'src/app/services/network-api.service';
 import { Constants } from 'src/app/utils/Constants';
+import { ProgressBarService } from 'src/app/services/progress-bar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about-us',
@@ -12,7 +14,9 @@ export class AboutUsPage implements OnInit {
 
   imageURL: string;
   data: any;
-  constructor(public api: NetworkApiService) {
+  constructor(public api: NetworkApiService,
+    public progresBarService: ProgressBarService,
+    public router: Router) {
 
     this.getAboutUsContent();
   }
@@ -22,7 +26,9 @@ export class AboutUsPage implements OnInit {
   }
 
   async getAboutUsContent() {
+    this.progresBarService.show();
     let data = await this.api.aboutUs();
+    this.progresBarService.hide();
     if (data.response.isSuccess) {
       this.data = data.response.data;
       this.imageURL = Constants.BASE_IMAGE_URL + this.data.url;
@@ -30,5 +36,9 @@ export class AboutUsPage implements OnInit {
     } else {
       console.log("RESPONSE failed");
     }
+  }
+
+  onContinue() {
+    this.router.navigate(['/dashboard'], { replaceUrl: true });
   }
 }

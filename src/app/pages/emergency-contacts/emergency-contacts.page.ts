@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgressBarService } from 'src/app/services/progress-bar.service';
+import { NetworkApiService } from 'src/app/services/network-api.service';
 
 @Component({
   selector: 'app-emergency-contacts',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmergencyContactsPage implements OnInit {
 
-  constructor() { }
+  contactsData: any[];
+  constructor(private progresBarService: ProgressBarService,
+    private apiService: NetworkApiService) {
+
+    this.getDataFromServer();
+  }
 
   ngOnInit() {
   }
@@ -15,6 +22,16 @@ export class EmergencyContactsPage implements OnInit {
   dialNumber(contactNumber: string) {
 
     window.open('tel:' + contactNumber, '_system');
+  }
+
+  async getDataFromServer() {
+    this.progresBarService.show();
+    let data = await this.apiService.getEmergencyContacts();
+    this.progresBarService.hide();
+    if (data.response) {
+      this.contactsData = data.response.data;
+    }
+    console.log(data);
   }
 
 }
