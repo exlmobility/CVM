@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Outbox',
-      url: '/folder/Outbox',
+      url: 'feedback',
       icon: 'paper-plane'
     },
     {
@@ -58,8 +58,8 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
- async  initializeApp() {
- 
+  async  initializeApp() {
+
     await this.platform.ready();
     this.statusBar.styleDefault();
     this.splashScreen.hide();
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
   }
 
   async decidedRootBasedOnAuth() {
-   this.isUserLoggedIn = await this.appStorage.getUserLoggedin()
+    this.isUserLoggedIn = await this.appStorage.getUserLoggedin()
     if (this.isUserLoggedIn == 'yes') {
       //this.router.navigate(['/enter-mpin'], { replaceUrl: true });
        this.router.navigate(['/dashboard'], { replaceUrl: true });
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/login'], { replaceUrl: true });
     }
   }
- 
+
 
 
 }
