@@ -66,11 +66,11 @@ export class EnterMpinPage implements OnInit {
       );
     }
   }
- async  onPressForgotmPIN() {
+  async  onPressForgotmPIN() {
 
-   await this.appStorage.clearAllItems();
+    await this.appStorage.clearAllItems();
 
-   this.router.navigate(['/login'], { replaceUrl: true });
+    this.router.navigate(['/login'], { replaceUrl: true });
 
   }
 }
