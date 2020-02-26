@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Router } from '@angular/router';
+import { AppStorageService } from './services/app-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  isUserLoggedIn: string;
   public appPages = [
     {
       title: 'Inbox',
@@ -48,16 +51,19 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router,
+    private appStorage: AppStorageService,
   ) {
     this.initializeApp();
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+ async  initializeApp() {
+ 
+    await this.platform.ready();
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
+    this.decidedRootBasedOnAuth();
   }
 
   ngOnInit() {
@@ -66,4 +72,17 @@ export class AppComponent implements OnInit {
     //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     // }
   }
+
+  async decidedRootBasedOnAuth() {
+   this.isUserLoggedIn = await this.appStorage.getUserLoggedin()
+    if (this.isUserLoggedIn == 'yes') {
+      this.router.navigate(['/enter-mpin'], { replaceUrl: true });
+      // this.router.navigate(['/home'], { replaceUrl: true });
+    } else {
+      this.router.navigate(['/login'], { replaceUrl: true });
+    }
+  }
+ 
+
+
 }

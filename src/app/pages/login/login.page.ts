@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { Constants } from 'src/app/utils/Constants';
 import { ToastService } from 'src/app/services/toast.service';
 import { UserDetailService } from 'src/app/services/user-detail.service';
-
+import { AppLauncher, AppLauncherOptions } from '@ionic-native/app-launcher/ngx';
+import { Platform } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -20,7 +22,10 @@ export class LoginPage implements OnInit {
   constructor(public apiCtrl: NetworkApiService,
     public progresBarService: ProgressBarService,
     private router: Router,
+    private appLauncher: AppLauncher,
+    private iab: InAppBrowser,
     private toastCtrl:ToastService, 
+    private platform: Platform,
     private userDetailService: UserDetailService) { }
 
   ngOnInit() {
@@ -101,6 +106,29 @@ export class LoginPage implements OnInit {
   }
 
 
+  onPressForgotPassword() {
+    const options: AppLauncherOptions = {
+    }
+    if (this.platform.is('ios')) {
+      options.uri = 'pwdreset://';
+
+      this.appLauncher.canLaunch(options)
+        .then((canLaunch: boolean) => {
+          this.appLauncher.launch(options);
+        }).catch((error: any) => {
+          this.iab.create('https://itunes.apple.com/in/app/password-self-service/id1313722688');
+        });
+    } else {
+      options.packageName = 'com.exl.pss';
+
+      this.appLauncher.canLaunch(options)
+        .then((canLaunch: boolean) => {
+          this.appLauncher.launch(options);
+        }).catch((error: any) => {
+          this.iab.create('https://play.google.com/store/apps/details?id=com.exl.pss&hl=en');
+        });
+    }
+  }
 
 
 

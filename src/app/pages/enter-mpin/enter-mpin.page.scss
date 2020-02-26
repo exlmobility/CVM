@@ -1,0 +1,82 @@
+ion-content.background {
+    --background: none;
+    background: url(../../../assets/imgs/login-bg.png) no-repeat 0 0;
+    background-size: cover;
+}
+.container-keyboard{
+   text-align: center;
+}
+.footer{
+    position: absolute;
+    bottom: 16px;
+    left :16px;
+    right: 16px;
+ }
+.text-number{
+    color: white;
+    font-size: 23px;
+    font-family: 'Monserrat-bold';
+}
+.user-info-container{
+    margin-top: 20vh;
+    text-align: center;
+}
+.text-welcome{
+    color: white;
+    font-size: 11px;
+    margin:0px;
+    font-family: 'Monserrat-semibold';
+}
+
+.text-username{
+    color:white;
+    font-size: 17px;
+    font-variant-caps: all-small-caps;
+    margin:0px;
+    font-family: 'Monserrat-bold';
+}
+.lable-mpin-container{
+    text-align: -webkit-center;
+ 
+}
+.text-enter-mpin{
+    font-size: 13px;
+    color: white;
+    font-family: 'Monserrat-semibold';
+}
+
+.col-inputs{
+    text-align: -webkit-center;
+    padding: 0px;
+}
+.input-icon{
+    color: white;
+}
+.input-item {
+    border: 1px solid white;
+    border-radius: 20%;
+    height: 25px;
+    width: 25px;
+    padding: 3px;
+}
+
+.input-item-red {
+    border: 1px solid red;
+  
+}
+
+.container-keyboard > ion-row {
+padding-bottom: 18px;
+}
+.row-enter-mpin-inputs{
+    justify-content: center;
+}
+.row-enter-mpin-lable{
+    margin-top:30%;
+}
+ 
+.link_forgotPassword {
+    color: #FF6503;
+    font-size: 13px;
+    padding: 10px;
+}
