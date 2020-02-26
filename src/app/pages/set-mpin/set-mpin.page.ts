@@ -15,8 +15,6 @@ export class SetMpinPage implements OnInit {
   setPasscode: string = "";
   rowInput: boolean = true;
 
-
-  
   passWord: string = ""; 
   token: string ="";
 
@@ -92,10 +90,8 @@ export class SetMpinPage implements OnInit {
     }
   }
 
-
   async  saveUserData() {
     let responseData = this.userDetailService.userDetailsData;
- 
      this.token = this.userDetailService.authToken;
      this.employee_Id = responseData.Employee_Id;
      this.emp_name = responseData.Emp_Name;

@@ -11,10 +11,10 @@ export class ProgressBarService {
 
   show(message = "") {
     this.loadingCtrl.create({
-      spinner: 'bubbles',
+      spinner: 'lines',
       message: message,
       translucent: true,
-      cssClass: 'custom-class custom-loading'
+      cssClass: 'custom-loading'
     }).then(loading => loading.present());
   }
 
