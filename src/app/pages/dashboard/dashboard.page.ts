@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400
+  };
   constructor() { }
 
   ngOnInit() {

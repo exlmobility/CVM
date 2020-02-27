@@ -23,4 +23,77 @@
     color: white;
     font-family: 'Monserrat-medium';
   }
+ .date-wrapper {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  background-color: #f08233;
+  border-radius: 50%
+}
+.date{
+  color:white;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.month-year{
+   color: black;
+   font-size: 1.2rem;
+  //  position: fixed;
+  //  bottom: 10%;
+}
+.arrow-forward{
+  font-size: 17px;
+  top: 50%;
+  position: absolute;
+  /* right: 25%; */
+  transform: translate(-50%, -50%);
+}
+.visit-details-label{
+  font-size: 1.5 rem;
+  text-align: right;
+  top: 50%;
+  position: absolute;
+  transform: translate(7%, -50%);
  
+}
+.col-arrow-forward{
+  text-align: right;
+}
+.date-month-wrapper{
+margin-top:5px;
+margin-left: 5px;
+}
+.list-visits{
+  margin: -1px 0 32px 0;
+}
+.section {
+ height: 50%;
+ overflow: hidden;
+ overflow-y: scroll;
+ }
+
+.slider-bg {
+  background: #f08233;
+  height: 50%;
+}
+.slider-imgs{
+width: 78px;
+height: 78px;
+}
+.slider-imgs-label{
+  font-size: 17px;
+  color:white;
+}
+
+.slider-bg::before {
+  background: url('../../../assets/imgs/org-bg.png') no-repeat center top;
+  position: relative;
+  top: -29px;
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  background-size: 100% 100%;
+}

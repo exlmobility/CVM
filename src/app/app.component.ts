@@ -16,38 +16,85 @@ export class AppComponent implements OnInit {
   isUserLoggedIn: string;
   public appPages = [
     {
-      title: 'Inbox',
+      title: 'Dashboard',
+      url: 'dashboard',
+      icon: '../../../assets/imgs/dashboard.png'
+    },
+    {
+      title: 'Visit List',
+      url: '',
+      icon: '../../../assets/imgs/client_visit.png'
+    },
+    {
+      title: 'EXL Profiles',
+      url: '',
+      icon: '../../../assets/imgs/profile_icon.png'
+    },
+    {
+      title: 'Visitor Profile',
       url: 'visitor-profile',
-      icon: 'mail'
+      icon: '../../../assets/imgs/visitor_profile.png'
     },
     {
-      title: 'Outbox',
+      title: 'Travel',
+      url: '',
+      icon: '../../../assets/imgs/menu_travel.png'
+    },
+    {
+      title: 'Make A Request',
+      url: 'make-request',
+      icon: '../../../assets/imgs/menu_make-a-request.png'
+    },
+    {
+      title: 'Feedback',
       url: 'feedback',
-      icon: 'paper-plane'
+      icon: '../../../assets/imgs/menu_feedback.png'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Emergency Contacts',
+      url: 'emergency-contacts',
+      icon: '../../../assets/imgs/menu_contact.png'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Places to Visit',
+      url: '',
+      icon: '../../../assets/imgs/menu_place-to-visit.png'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'Food Menu',
+      url: '',
+      icon: '../../../assets/imgs/menu_foodmenu.png'
     },
     {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title: 'Food Guide',
+      url: '',
+      icon: '../../../assets/imgs/food_guide.png'
+    },
+    {
+      title: 'EXL Locations',
+      url: '',
+      icon: '../../../assets/imgs/menu_location.png'
+    },
+    {
+      title: 'About EXL',
+      url: '',
+      icon: '../../../assets/imgs/menu_about-excel.png'
     }
+    ,
+    {
+      title: 'Log Off',
+      url: '',
+      icon: '../../../assets/imgs/menu_sign-out.png'
+    }
+    ,
+    {
+      title: 'Sign Out',
+      url: '',
+      icon: '../../../assets/imgs/sign-out.png'
+    }
+    
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
+ 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -76,13 +123,10 @@ export class AppComponent implements OnInit {
   async decidedRootBasedOnAuth() {
     this.isUserLoggedIn = await this.appStorage.getUserLoggedin()
     if (this.isUserLoggedIn == 'yes') {
-      //this.router.navigate(['/enter-mpin'], { replaceUrl: true });
-       this.router.navigate(['/dashboard'], { replaceUrl: true });
+     this.router.navigate(['/enter-mpin'], { replaceUrl: true });
     } else {
-      this.router.navigate(['/login'], { replaceUrl: true });
+     this.router.navigate(['/login'], { replaceUrl: true });
     }
   }
-
-
-
+ 
 }

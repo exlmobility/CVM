@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
       let response = JSON.parse(responseData.data);
       this.userDetailService.authToken = response.access_token;
       if(response.access_token){
-        let userDetails = await this.apiCtrl.callGetUserData(response.userName.trim(),response.access_token);
+        let userDetails = await this.apiCtrl.callGetUserData(response.userName.trim());
  
         console.log("userDetails", userDetails.response.isSuccess);
 

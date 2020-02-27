@@ -114,6 +114,14 @@ ion-note {
   color: var(--ion-color-medium-shade);
 }
 
-ion-item.selected {
-  --color: var(--ion-color-primary);
+// ion-item.selected {
+//   --color: var(--ion-color-primary);
+// }
+.menu-title{
+ margin-left: 10px;;
+}
+
+.menu-title-icons{
+  width:32px;
+  height:28px;
 }

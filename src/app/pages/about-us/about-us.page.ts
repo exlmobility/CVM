@@ -3,6 +3,7 @@ import { NetworkApiService } from 'src/app/services/network-api.service';
 import { Constants } from 'src/app/utils/Constants';
 import { ProgressBarService } from 'src/app/services/progress-bar.service';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-about-us',
@@ -16,6 +17,7 @@ export class AboutUsPage implements OnInit {
   data: any;
   constructor(public api: NetworkApiService,
     public progresBarService: ProgressBarService,
+    private toastCtrl:ToastService, 
     public router: Router) {
 
     this.getAboutUsContent();
@@ -26,6 +28,13 @@ export class AboutUsPage implements OnInit {
   }
 
   async getAboutUsContent() {
+
+    if (!this.api.isConnectedToNetwork) {
+      this.toastCtrl.showSimpleToast(Constants.MSG_INTERNET_ERROR)
+
+      return;
+    }
+
     this.progresBarService.show();
     let data = await this.api.aboutUs();
     this.progresBarService.hide();
@@ -38,7 +47,17 @@ export class AboutUsPage implements OnInit {
     }
   }
 
-  onContinue() {
-    this.router.navigate(['/dashboard'], { replaceUrl: true });
+ async onContinue() {
+
+    if (!this.api.isConnectedToNetwork) {
+      this.toastCtrl.showSimpleToast(Constants.MSG_INTERNET_ERROR)
+
+      return;
+    }
+   // this.progresBarService.show();
+
+
+
+   // this.router.navigate(['/dashboard'], { replaceUrl: true });
   }
 }

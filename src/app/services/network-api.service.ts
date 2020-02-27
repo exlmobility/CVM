@@ -69,7 +69,7 @@ export class NetworkApiService {
   }
 
 
-  async callGetUserData(userName: string, authToken: string) {
+  async callGetUserData(userName: string) {
 
     var userData = {
       username: userName
@@ -82,7 +82,7 @@ export class NetworkApiService {
     if (!this.isConnectedToNetwork) {
       return Promise.reject("No internet connectivity")
     }
-    return this.postData("/api/APP_ClientVisit/UserData", authToken, param);
+    return this.postData("/api/APP_ClientVisit/UserData", this.userDetailCtrl.authToken, param);
   }
 
 
