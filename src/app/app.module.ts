@@ -17,6 +17,8 @@ import { UserDetailService } from './services/user-detail.service';
 import { AppStorageService } from './services/app-storage.service';
 import { Device } from '@ionic-native/device/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { AppLauncher } from '@ionic-native/app-launcher/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +36,8 @@ import { HTTP } from '@ionic-native/http/ngx';
     UserDetailService,
     ProgressBarService,
     HTTP,
+    AppLauncher,
+    InAppBrowser,
     AppStorageService,
     Device,
     Network,
