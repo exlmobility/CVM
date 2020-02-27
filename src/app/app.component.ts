@@ -76,8 +76,8 @@ export class AppComponent implements OnInit {
   async decidedRootBasedOnAuth() {
     this.isUserLoggedIn = await this.appStorage.getUserLoggedin()
     if (this.isUserLoggedIn == 'yes') {
-      this.router.navigate(['/enter-mpin'], { replaceUrl: true });
-      // this.router.navigate(['/home'], { replaceUrl: true });
+      //this.router.navigate(['/enter-mpin'], { replaceUrl: true });
+       this.router.navigate(['/dashboard'], { replaceUrl: true });
     } else {
       this.router.navigate(['/login'], { replaceUrl: true });
     }
