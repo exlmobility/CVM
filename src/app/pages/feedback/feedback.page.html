@@ -4,10 +4,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="padding background" force-overscroll="false">
 
+  <ion-item style="margin: 10px; border-radius: 5px;">
+    <ion-label>Select Category</ion-label>
+    <ion-select interface="popover" [(ngModel)]="selectedCategory" (ionChange)="onCategorySelect(data)">
+      <ion-select-option *ngFor="let data of feedbackCategories">{{data.RF_Text}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item style="margin: 10px; border-radius: 5px; --highlight-background: white;">
+    <ion-label position="stacked" style="color: #3c3c41; font-size: 20px;">Comments <span
+        style="font-size: 14px; font-weight: bolder; color: #666666">({{250 - comment.length}} character
+        left)</span>
+    </ion-label>
+    <ion-textarea type="email" rows="5" maxlength="250" [(ngModel)]="comment"></ion-textarea>
+  </ion-item>
 </ion-content>
 
-<ion-footer (click)="onContinue()">
-  <ion-button expand="full" style="margin: 0px" color="#e56f12" mode="md">CONTINUE</ion-button>
+<ion-footer>
+  <ion-button expand="full" class="footer-button" mode="md">SUBMIT</ion-button>
 </ion-footer>

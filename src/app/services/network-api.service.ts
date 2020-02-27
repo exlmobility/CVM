@@ -158,4 +158,13 @@ export class NetworkApiService {
     let token = "HfOEBicWTHHrPj7a_bZJ7IGqwrNk4e3pu_3CP46lhjHGz_k0C2ywtzKMLWocBMqHZizt5ny0jWWBIHlDN91fszjLz3vHwdP8Q3KLoAEXC9UPkDVpH-azdO2NObcGsOfxrijYz0TjQxjhh8BzdzoTtDJJ7JdLSYeYyN5GDmu0d6J9Te18EX0aqimwsVQAUinf9QIrmJqUvKIFtDzNM6I6SSTiPlLNGjKJfgzoCswaRQ40F53TkuYRbB0jANNj58shyLHlh467v_LcAsieO-BFsliptKRzsUbzIf_ELHXZohkx6inAUFTAOaP07F7ckEyPoSD3DSQsYnVFqiVPAvGWpcFkPkTGRTQ07xtXxIUEexSzJOZb1r6hr-nsVWZck2gOR7-Aa5w4q71izW9YhD7nCKFggiN3KZ1U0hD8WHrhBs6HeFQt-SpIcds8Rr9Mwabh1URFScA_V4mUJ2T46dhdVG30FVpzXfZfdNZhnMjFCHATmBQB0oY-bD6eOtY5joZn_J4mYmEHafE2779L2oOpyw"
     return this.postData("/api/APP_ClientVisit/Profile", token, param)
   }
+
+  async getFeedbackCategories() {
+    var param = {};
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    let token = "HfOEBicWTHHrPj7a_bZJ7IGqwrNk4e3pu_3CP46lhjHGz_k0C2ywtzKMLWocBMqHZizt5ny0jWWBIHlDN91fszjLz3vHwdP8Q3KLoAEXC9UPkDVpH-azdO2NObcGsOfxrijYz0TjQxjhh8BzdzoTtDJJ7JdLSYeYyN5GDmu0d6J9Te18EX0aqimwsVQAUinf9QIrmJqUvKIFtDzNM6I6SSTiPlLNGjKJfgzoCswaRQ40F53TkuYRbB0jANNj58shyLHlh467v_LcAsieO-BFsliptKRzsUbzIf_ELHXZohkx6inAUFTAOaP07F7ckEyPoSD3DSQsYnVFqiVPAvGWpcFkPkTGRTQ07xtXxIUEexSzJOZb1r6hr-nsVWZck2gOR7-Aa5w4q71izW9YhD7nCKFggiN3KZ1U0hD8WHrhBs6HeFQt-SpIcds8Rr9Mwabh1URFScA_V4mUJ2T46dhdVG30FVpzXfZfdNZhnMjFCHATmBQB0oY-bD6eOtY5joZn_J4mYmEHafE2779L2oOpyw"
+    return this.postData("/api/APP_ClientVisit/RequestFeedbackTypeList", token, param)
+  }
 }

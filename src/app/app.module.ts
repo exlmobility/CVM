@@ -36,6 +36,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     UserDetailService,
     ProgressBarService,
     HTTP,
+    AppLauncher,
+    InAppBrowser,
     AppStorageService,
     Device,
     InAppBrowser,
