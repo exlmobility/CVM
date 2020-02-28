@@ -17,7 +17,6 @@ export class NetworkApiService {
 
     console.log("NetworkapiService");
 
-
     // watch network for a disconnection
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-(');
@@ -85,9 +84,70 @@ export class NetworkApiService {
     return this.postData("/api/APP_ClientVisit/UserData", this.userDetailCtrl.authToken, param);
   }
 
+  async aboutUs() {
+    try {
+      console.log("API CALLED");
+      let response = await this.postData('/api/APP_ClientVisit/aboutExl', "", {});
+      return Promise.resolve(response);
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(error);
+    }
+  }
+
+  async continueFromAboutUS(employee_Id:string){
+    var param = {
+      employeeid: employee_Id,
+      metaData: this.userDetailCtrl.getMetaData()
+  };
+  if (!this.isConnectedToNetwork) {
+    return Promise.reject("No internet connectivity")
+  }
+  return this.postData("/api/APP_ClientVisit/VisitList", this.userDetailCtrl.authToken, param)
+  }
+
+  async getVisitorProfile() {
+    var param = {
+      VisitId: "6022",
+      metaData: this.userDetailCtrl.getMetaData()
+    };
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/VisitorProfile", this.userDetailCtrl.authToken, param)
+  }
+
+  async getEmergencyContacts() {
+    var param = {
+      VisitId: "6022",
+      metaData: this.userDetailCtrl.getMetaData()
+    };
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/EmergencyContact", this.userDetailCtrl.authToken, param)
+  }
+
+  async getExlProfiles() {
+    var param = {
+      VisitId: "6022",
+      metaData: this.userDetailCtrl.getMetaData()
+    };
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/Profile", this.userDetailCtrl.authToken, param)
+  }
+
+  async getFeedbackCategories() {
+    var param = {};
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/RequestFeedbackTypeList", this.userDetailCtrl.authToken, param)
+  }
 
   async postData(endPoint: string, authToken: string, data: any) {
-
     const options = {
       method: 'post',
       data: data,
@@ -95,7 +155,6 @@ export class NetworkApiService {
       timeout: 30 * 1000,
       headers: { 'Authorization': 'bearer ' + authToken, 'Content-Type': 'application/json' }
     };
-
     console.log("request", options);
     try {
       let response = await this.http.sendRequest(`${Constants.BASE_URL}${endPoint}`, options);
@@ -110,61 +169,5 @@ export class NetworkApiService {
       return Promise.reject(error);
     }
 
-  }
-
-  async aboutUs() {
-    try {
-      console.log("API CALLED");
-      let response = await this.postData('/api/APP_ClientVisit/aboutExl', "", {});
-      return Promise.resolve(response);
-    } catch (error) {
-      console.error(error);
-      return Promise.reject(error);
-    }
-  }
-
-  async getVisitorProfile() {
-    var param = {
-      VisitId: "6022",
-      metaData: this.userDetailCtrl.getMetaData()
-    };
-    if (!this.isConnectedToNetwork) {
-      return Promise.reject("No internet connectivity")
-    }
-    let token = "HfOEBicWTHHrPj7a_bZJ7IGqwrNk4e3pu_3CP46lhjHGz_k0C2ywtzKMLWocBMqHZizt5ny0jWWBIHlDN91fszjLz3vHwdP8Q3KLoAEXC9UPkDVpH-azdO2NObcGsOfxrijYz0TjQxjhh8BzdzoTtDJJ7JdLSYeYyN5GDmu0d6J9Te18EX0aqimwsVQAUinf9QIrmJqUvKIFtDzNM6I6SSTiPlLNGjKJfgzoCswaRQ40F53TkuYRbB0jANNj58shyLHlh467v_LcAsieO-BFsliptKRzsUbzIf_ELHXZohkx6inAUFTAOaP07F7ckEyPoSD3DSQsYnVFqiVPAvGWpcFkPkTGRTQ07xtXxIUEexSzJOZb1r6hr-nsVWZck2gOR7-Aa5w4q71izW9YhD7nCKFggiN3KZ1U0hD8WHrhBs6HeFQt-SpIcds8Rr9Mwabh1URFScA_V4mUJ2T46dhdVG30FVpzXfZfdNZhnMjFCHATmBQB0oY-bD6eOtY5joZn_J4mYmEHafE2779L2oOpyw"
-    return this.postData("/api/APP_ClientVisit/VisitorProfile", token, param)
-  }
-
-  async getEmergencyContacts() {
-    var param = {
-      VisitId: "6022",
-      metaData: this.userDetailCtrl.getMetaData()
-    };
-    if (!this.isConnectedToNetwork) {
-      return Promise.reject("No internet connectivity")
-    }
-    let token = "HfOEBicWTHHrPj7a_bZJ7IGqwrNk4e3pu_3CP46lhjHGz_k0C2ywtzKMLWocBMqHZizt5ny0jWWBIHlDN91fszjLz3vHwdP8Q3KLoAEXC9UPkDVpH-azdO2NObcGsOfxrijYz0TjQxjhh8BzdzoTtDJJ7JdLSYeYyN5GDmu0d6J9Te18EX0aqimwsVQAUinf9QIrmJqUvKIFtDzNM6I6SSTiPlLNGjKJfgzoCswaRQ40F53TkuYRbB0jANNj58shyLHlh467v_LcAsieO-BFsliptKRzsUbzIf_ELHXZohkx6inAUFTAOaP07F7ckEyPoSD3DSQsYnVFqiVPAvGWpcFkPkTGRTQ07xtXxIUEexSzJOZb1r6hr-nsVWZck2gOR7-Aa5w4q71izW9YhD7nCKFggiN3KZ1U0hD8WHrhBs6HeFQt-SpIcds8Rr9Mwabh1URFScA_V4mUJ2T46dhdVG30FVpzXfZfdNZhnMjFCHATmBQB0oY-bD6eOtY5joZn_J4mYmEHafE2779L2oOpyw"
-    return this.postData("/api/APP_ClientVisit/EmergencyContact", token, param)
-  }
-
-  async getExlProfiles() {
-    var param = {
-      VisitId: "6022",
-      metaData: this.userDetailCtrl.getMetaData()
-    };
-    if (!this.isConnectedToNetwork) {
-      return Promise.reject("No internet connectivity")
-    }
-    let token = "HfOEBicWTHHrPj7a_bZJ7IGqwrNk4e3pu_3CP46lhjHGz_k0C2ywtzKMLWocBMqHZizt5ny0jWWBIHlDN91fszjLz3vHwdP8Q3KLoAEXC9UPkDVpH-azdO2NObcGsOfxrijYz0TjQxjhh8BzdzoTtDJJ7JdLSYeYyN5GDmu0d6J9Te18EX0aqimwsVQAUinf9QIrmJqUvKIFtDzNM6I6SSTiPlLNGjKJfgzoCswaRQ40F53TkuYRbB0jANNj58shyLHlh467v_LcAsieO-BFsliptKRzsUbzIf_ELHXZohkx6inAUFTAOaP07F7ckEyPoSD3DSQsYnVFqiVPAvGWpcFkPkTGRTQ07xtXxIUEexSzJOZb1r6hr-nsVWZck2gOR7-Aa5w4q71izW9YhD7nCKFggiN3KZ1U0hD8WHrhBs6HeFQt-SpIcds8Rr9Mwabh1URFScA_V4mUJ2T46dhdVG30FVpzXfZfdNZhnMjFCHATmBQB0oY-bD6eOtY5joZn_J4mYmEHafE2779L2oOpyw"
-    return this.postData("/api/APP_ClientVisit/Profile", token, param)
-  }
-
-  async getFeedbackCategories() {
-    var param = {};
-    if (!this.isConnectedToNetwork) {
-      return Promise.reject("No internet connectivity")
-    }
-    let token = "HfOEBicWTHHrPj7a_bZJ7IGqwrNk4e3pu_3CP46lhjHGz_k0C2ywtzKMLWocBMqHZizt5ny0jWWBIHlDN91fszjLz3vHwdP8Q3KLoAEXC9UPkDVpH-azdO2NObcGsOfxrijYz0TjQxjhh8BzdzoTtDJJ7JdLSYeYyN5GDmu0d6J9Te18EX0aqimwsVQAUinf9QIrmJqUvKIFtDzNM6I6SSTiPlLNGjKJfgzoCswaRQ40F53TkuYRbB0jANNj58shyLHlh467v_LcAsieO-BFsliptKRzsUbzIf_ELHXZohkx6inAUFTAOaP07F7ckEyPoSD3DSQsYnVFqiVPAvGWpcFkPkTGRTQ07xtXxIUEexSzJOZb1r6hr-nsVWZck2gOR7-Aa5w4q71izW9YhD7nCKFggiN3KZ1U0hD8WHrhBs6HeFQt-SpIcds8Rr9Mwabh1URFScA_V4mUJ2T46dhdVG30FVpzXfZfdNZhnMjFCHATmBQB0oY-bD6eOtY5joZn_J4mYmEHafE2779L2oOpyw"
-    return this.postData("/api/APP_ClientVisit/RequestFeedbackTypeList", token, param)
   }
 }

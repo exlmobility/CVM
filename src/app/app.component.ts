@@ -110,7 +110,9 @@ export class AppComponent implements OnInit {
     await this.platform.ready();
     this.statusBar.styleDefault();
     this.splashScreen.hide();
+    this.appStorage.initDataOnStartup();
     this.decidedRootBasedOnAuth();
+    
   }
 
   ngOnInit() {

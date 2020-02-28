@@ -16,21 +16,11 @@ export class SetMpinPage implements OnInit {
   rowInput: boolean = true;
 
   passWord: string = ""; 
-  token: string ="";
-
-  employee_Id: string = "";
-  emp_name: string = "";
-  userName: string = "";
-  email_id:string = "";
-  grade:string = "";
-  job: string = "";
-  location:string = "";
-  country:string = "";
-  user_type:string = "";
+  
  
 
   isWrongPin: boolean = false;
-  constructor(private userDetailService: UserDetailService,
+  constructor(private userCtrl: UserDetailService,
     public progresBarService: ProgressBarService,
     private toastCtrl: ToastService,
     private appStorage: AppStorageService,
@@ -91,35 +81,10 @@ export class SetMpinPage implements OnInit {
   }
 
   async  saveUserData() {
-    let responseData = this.userDetailService.userDetailsData;
-     this.token = this.userDetailService.authToken;
-     this.employee_Id = responseData.Employee_Id;
-     this.emp_name = responseData.Emp_Name;
-     this.userName = responseData.USER_NAME;
-     this.email_id = responseData.EMAIL_ID;
-     this.grade = responseData.GRADE;
-     this.job = responseData.JOB;
-     this.location = responseData.LOCATION;
-     this.country = responseData.COUNTRY;
-     this.user_type = responseData.USER_TYPE;
      await this.saveToStorage();
-
   }
   private saveToStorage() {
-  
-    this.appStorage.setAuthToken(this.token);
-    this.appStorage.setDesignation(this.job);
-    this.appStorage.setEmpNo(this.employee_Id);
-    this.appStorage.setFullName(this.emp_name);
-    this.appStorage.setUsername(this.userName);
-    this.appStorage.setUserLocation(this.location);
-    this.appStorage.setUserGrade(this.grade);
-    this.appStorage.setUserType(this.user_type);
-    this.appStorage.setUserEmailId(this.email_id);
-    this.appStorage.setUserCountry(this.country);
-     
-    this.appStorage.setUserLoggedin('yes');
-    return Promise.resolve()
+   this.appStorage.saveDataOnLogin();
   }
 
 }

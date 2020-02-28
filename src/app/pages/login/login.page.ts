@@ -76,18 +76,13 @@ export class LoginPage implements OnInit {
 
         if(userDetails.response.isSuccess == "true"){
           console.log("### :- " ,userDetails.response.data.userDetail);
-          this.userDetailService.userDetailsData = userDetails.response.data.userDetail;
+          this.userDetailService.userDetail = userDetails.response.data.userDetail;
         }
         this.progresBarService.hide();
         this.router.navigate(['/set-mpin'], { replaceUrl: true });
         console.log("UserData :- " , userDetails);
       }
-
-
-    //  {"error":"invalid_grant","error_description":"You seemed to have entered the wrong username / password."}
-     // this.userDetailService.loginResponseData = resposeData;
-    //  this.progresBarService.hide();
-     // this.router.navigate(['/set-mpin'], { replaceUrl: true });       
+      
     } catch (error) {
       this.progresBarService.hide();
       var responseData: any;
