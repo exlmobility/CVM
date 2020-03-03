@@ -106,6 +106,29 @@ export class NetworkApiService {
   return this.postData("/api/APP_ClientVisit/VisitList", this.userDetailCtrl.authToken, param)
   }
 
+
+ async getAgendaLists(visit_id:string) {
+    var param = {
+      visitid: visit_id,
+      metaData: this.userDetailCtrl.getMetaData()
+  };
+  if (!this.isConnectedToNetwork) {
+    return Promise.reject("No internet connectivity")
+  }
+  return this.postData("/api/APP_ClientVisit/AgendaList", this.userDetailCtrl.authToken, param)
+  }
+
+  async getEventLists(agenda_id:string) {
+    var param = {
+      Agendaid: agenda_id,
+      metaData: this.userDetailCtrl.getMetaData()
+  };
+  if (!this.isConnectedToNetwork) {
+    return Promise.reject("No internet connectivity")
+  }
+  return this.postData("/api/APP_ClientVisit/EventList", this.userDetailCtrl.authToken, param)
+  }
+
   async getVisitorProfile() {
     var param = {
       VisitId: "6022",

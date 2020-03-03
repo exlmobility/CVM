@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'feedback',
     loadChildren: () => import('./pages/feedback/feedback.module').then(m => m.FeedbackPageModule)
+  },
+  {
+    path: 'agenda-details',
+    loadChildren: () => import('./pages/agenda-details/agenda-details.module').then( m => m.AgendaDetailsPageModule)
   }
 ];
 
