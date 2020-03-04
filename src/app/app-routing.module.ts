@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'agenda-details',
     loadChildren: () => import('./pages/agenda-details/agenda-details.module').then( m => m.AgendaDetailsPageModule)
+  },
+  {
+    path: 'event-details',
+    loadChildren: () => import('./pages/event-details/event-details.module').then( m => m.EventDetailsPageModule)
   }
 ];
 

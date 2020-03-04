@@ -1,0 +1,32 @@
+.newbackgroundcolor {
+    --background: #3c3c41;
+    background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);
+    color: #fff;
+    border-color: #111;
+    //--background: linear-gradient(to right, #0056ec, #1157ec, #1b58ed, #2359ed, #295aee, #325bef, #395bef, #405cf0, #495df0, #525ef1, #595ff1, #6060f1);
+  }
+
+.round_Image {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    margin-top: 5px;
+}
+.event-date{
+    color:#fff;
+    font-size:1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.event-time{
+    color:#fff;
+    font-size:0.9rem;
+    font-weight: bold;
+    text-align: center;
+}
+.direction-icon{
+    width:23px;
+}
+.direction-icon-wrapper{
+    text-align: center;
+}

@@ -75,51 +75,9 @@ export class AgendaDetailsPage implements OnInit {
    return this.months[date.getMonth()];
   }
 
+  goToEventTitle(selectedEvent){
+    this.userCtrl.setSelectedEvent(selectedEvent);
+    this.router.navigateByUrl('/event-details',{replaceUrl:true});
+  }
 }
 
-
-// {
-//   "response":{
-//      "isSuccess":"true",
-//      "data":[
-//         {
-//            "EventId":7009,
-//            "EventTitle":"Dinne With Utkarash",
-//            "EventDate":"16 Jan 2019",
-//            "StartTime":"18:00",
-//            "EndTime":"22:00",
-//            "EventDesc":"This is Dinne for the Day",
-//            "type":"Dinner",
-//            "location":null,
-//            "description":null,
-//            "image":null,
-//            "geoCoordinate":null,
-//            "Participants":[
-//               {
-//                  "ParticipantId":6027,
-//                  "Employee_id":"97420",
-//                  "fullName":"Hargopal Singh",
-//                  "description":"",
-//                  "designation":"Senior Manager",
-//                  "LOB":"Global Technology",
-//                  "profilePicUrl":""
-//               }
-//            ],
-//            "Visitors":[
-//               {
-//                  "VisitId":0,
-//                  "Employee_id":"6066",
-//                  "fullName":"Utkarsh Joshi",
-//                  "description":"Utkarsh is taking the KT of this application from Nasib",
-//                  "designation":"",
-//                  "profilePicUrl":"ImgCustomer_06066.png",
-//                  "IsExecutiveleadership":false,
-//                  "IsMeetingParticipant":false,
-//                  "metaData":null
-//               }
-//            ]
-//         }
-//      ],
-//      "error":null
-//   }
-// }

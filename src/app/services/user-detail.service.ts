@@ -23,6 +23,7 @@ export class UserDetailService {
 
   selectedAgenda = {};
 
+  selectedEvent = {};
   visitSelected = false;
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -110,5 +111,13 @@ getSelectedAgenda(){
 setSelectedAgenda(agenda:any) {
     this.selectedAgenda = agenda;
 }
+
+getSelectedEvent(){
+  return this.selectedEvent;
+}
+setSelectedEvent(event:any) {
+  this.selectedEvent = event;
+}
+ 
 
 }
