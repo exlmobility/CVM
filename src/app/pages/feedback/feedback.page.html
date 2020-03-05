@@ -1,6 +1,11 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>feedback</ion-title>
+  <ion-toolbar class="newbackgroundcolor">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="lable-title">
+      Feedback
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,12 +13,17 @@
 
   <ion-item style="margin: 10px; border-radius: 5px;">
     <ion-label>Select Category</ion-label>
-    <ion-select interface="popover" [(ngModel)]="selectedCategory" (ionChange)="onCategorySelect(data)">
-      <ion-select-option *ngFor="let data of feedbackCategories">{{data.RF_Text}}</ion-select-option>
+
+    <ion-select placeholder="Select" [(ngModel)]="selectedCategory">
+      <ion-select-option *ngFor="let items of feedbackCategories" (ionChange)="onCategorySelect(items.RFType_Id)" value="items.RFType_Id">{{items.RF_Text}}</ion-select-option>
     </ion-select>
+
+    <!-- <ion-select interface="popover" [(ngModel)]="selectedCategory">
+      <ion-select-option *ngFor="let data of feedbackCategories"  (ionChange)="onCategorySelect(data)">{{data.RF_Text}}</ion-select-option>
+    </ion-select> -->
   </ion-item>
   <ion-item style="margin: 10px; border-radius: 5px; --highlight-background: white;">
-    <ion-label position="stacked" style="color: #3c3c41; font-size: 20px;">Comments <span
+    <ion-label position="stacked" style="color: #3c3c41; font-size: 20px;">Comments<span
         style="font-size: 14px; font-weight: bolder; color: #666666">({{250 - comment.length}} character
         left)</span>
     </ion-label>
@@ -22,5 +32,5 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button expand="full" class="footer-button" mode="md">SUBMIT</ion-button>
+  <ion-button expand="full" class="footer-button" (click)="submitRequest()">SUBMIT</ion-button>
 </ion-footer>

@@ -17,6 +17,9 @@ export class LoginPage implements OnInit {
 
   userName: string = "Hargopal97420";
   passWord: string = "egregregergerg";
+
+  // userName: string = "";
+  // passWord: string = "";
   token: string;
      
   constructor(public apiCtrl: NetworkApiService,
@@ -64,7 +67,7 @@ export class LoginPage implements OnInit {
 
     try {
       let responseData = await this.apiCtrl.authenticateUser(this.userName.toUpperCase().trim(), this.passWord);
-
+      
       console.log("responseData:- " , JSON.parse(responseData.data)); 
       let response = JSON.parse(responseData.data);
       this.userDetailService.authToken = response.access_token;

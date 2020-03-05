@@ -69,21 +69,21 @@ margin-left: 5px;
   margin: -1px 0 32px 0;
 }
 .section {
- height: 50%;
- overflow: hidden;
- overflow-y: scroll;
+  position: absolute; 
+  left: 0; 
+  right: 0;
  }
 
 .slider-bg {
   background: #f08233;
-  height: 50%;
+  height: 40%;
 }
 .slider-imgs{
-width: 78px;
-height: 78px;
+width: 62px;
+height: 62px;
 }
 .slider-imgs-label{
-  font-size: 17px;
+  font-size: 1.7rem;
   color:white;
 }
 

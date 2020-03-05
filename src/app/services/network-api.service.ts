@@ -95,43 +95,44 @@ export class NetworkApiService {
     }
   }
 
-  async continueFromAboutUS(employee_Id:string){
+  async continueFromAboutUS(employee_Id: string) {
     var param = {
       employeeid: employee_Id,
       metaData: this.userDetailCtrl.getMetaData()
-  };
-  if (!this.isConnectedToNetwork) {
-    return Promise.reject("No internet connectivity")
-  }
-  return this.postData("/api/APP_ClientVisit/VisitList", this.userDetailCtrl.authToken, param)
+    };
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/VisitList", this.userDetailCtrl.authToken, param)
   }
 
 
- async getAgendaLists(visit_id:string) {
+  async getAgendaLists(visit_id: string) {
     var param = {
       visitid: visit_id,
       metaData: this.userDetailCtrl.getMetaData()
-  };
-  if (!this.isConnectedToNetwork) {
-    return Promise.reject("No internet connectivity")
-  }
-  return this.postData("/api/APP_ClientVisit/AgendaList", this.userDetailCtrl.authToken, param)
+    };
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/AgendaList", this.userDetailCtrl.authToken, param)
   }
 
-  async getEventLists(agenda_id:string) {
+  async getEventLists(agenda_id: string) {
     var param = {
       Agendaid: agenda_id,
       metaData: this.userDetailCtrl.getMetaData()
-  };
-  if (!this.isConnectedToNetwork) {
-    return Promise.reject("No internet connectivity")
-  }
-  return this.postData("/api/APP_ClientVisit/EventList", this.userDetailCtrl.authToken, param)
+    };
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/EventList", this.userDetailCtrl.authToken, param)
   }
 
-  async getVisitorProfile() {
+  async getVisitorProfile(visitId: string) {
+
     var param = {
-      VisitId: "6022",
+      VisitId: visitId,
       metaData: this.userDetailCtrl.getMetaData()
     };
     if (!this.isConnectedToNetwork) {
@@ -168,6 +169,28 @@ export class NetworkApiService {
       return Promise.reject("No internet connectivity")
     }
     return this.postData("/api/APP_ClientVisit/RequestFeedbackTypeList", this.userDetailCtrl.authToken, param)
+  }
+
+  async submitFeedbackReport(cat_id: number, employee_Id: string, visit_id: string, comment: string, emp_Name: string) {
+
+    var request = {
+      typeid: cat_id,
+      employeeid: employee_Id,
+      visitid: visit_id,
+      description: comment,
+      RaisedBy: emp_Name
+    };
+
+    var param = {
+      rating: request,
+      metaData: this.userDetailCtrl.getMetaData()
+    }
+
+    if (!this.isConnectedToNetwork) {
+      return Promise.reject("No internet connectivity")
+    }
+    return this.postData("/api/APP_ClientVisit/SubmitRating", this.userDetailCtrl.authToken, param)
+
   }
 
   async postData(endPoint: string, authToken: string, data: any) {

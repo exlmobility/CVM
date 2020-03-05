@@ -7,7 +7,7 @@
       </ion-menu-button>
     </ion-buttons>
     <ion-title class="lable-sub-title">
-      {{visit.title | slice:0:20 }}{{visit.title.length > 20 ? '...' : ''}}<br/>
+      {{visit.title | slice:0:20 }}{{visit.title.length > 20 ? '...' : ''}}<br />
       <span style='font-size:1.7rem;color:#ababac;font-weight: bold;'>{{formatedDate}}
       </span>
     </ion-title>
@@ -16,7 +16,7 @@
     <ion-title class="lable-sub-title">VISIT'S AGENDA</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content style="position: relative;">
   <div class="section">
     <ion-list class="list-visits">
       <ion-item *ngFor="let items of agendaList" (click)="GoToDashboardView(items)">
@@ -28,7 +28,8 @@
               </div>
             </ion-col>
             <ion-col>
-              <ion-label class="visit-details-label">{{items.TotalEvents}} Event(s), {{items.TotalParticipants}} Participant(s)</ion-label>
+              <ion-label class="visit-details-label">{{items.TotalEvents}} Event(s), {{items.TotalParticipants}}
+                Participant(s)</ion-label>
             </ion-col>
             <ion-col class="col-arrow-forward" size="2">
               <ion-icon name="chevron-forward-outline" class="arrow-forward"></ion-icon>
@@ -42,66 +43,68 @@
     </ion-list>
   </div>
 
-  <div class="slider-bg">
-    <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide>
-        <ion-grid>
-          <ion-row>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/profile.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">EXL Profiles</span>
-            </ion-col>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/visitor profile.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Visitor Profile</span>
-            </ion-col>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/travel.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Travel</span>
-            </ion-col>
-          </ion-row>
 
-          <ion-row>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/make-a-request.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Make A Request</span>
-            </ion-col>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/feedback.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Feedback</span>
-            </ion-col>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/contact.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Emergency Contacts</span>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-      </ion-slide>
-      <ion-slide>
-        <ion-grid>
-          <ion-row>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/place-to-visit.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Places To Visit</span>
-            </ion-col>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/food-menu.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Food Menu</span>
-            </ion-col>
-            <ion-col align-self-center>
-              <img src="../../../assets/imgs/food-guide.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">Food Guide</span>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <img src="../../../assets/imgs/location.png" class="slider-imgs"><br />
-              <span class="slider-imgs-label">EXL Locations</span>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-slide>
-    </ion-slides>
-  </div>
 </ion-content>
+
+<div class="slider-bg">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col align-self-center (click)="sliderOptionsClick(0)">
+            <img src="../../../assets/imgs/profile.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">EXL Profiles</span>
+          </ion-col>
+          <ion-col align-self-center (click)="sliderOptionsClick(1)">
+            <img src="../../../assets/imgs/visitor profile.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Visitor Profile</span>
+          </ion-col>
+          <ion-col align-self-center (click)="sliderOptionsClick(2)">
+            <img src="../../../assets/imgs/travel.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Travel</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col align-self-center (click)="sliderOptionsClick(3)">
+            <img src="../../../assets/imgs/make-a-request.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Make A Request</span>
+          </ion-col>
+          <ion-col align-self-center (click)="sliderOptionsClick(4)">
+            <img src="../../../assets/imgs/feedback.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Feedback</span>
+          </ion-col>
+          <ion-col align-self-center (click)="sliderOptionsClick(5)">
+            <img src="../../../assets/imgs/contact.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Emergency Contacts</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col align-self-center (click)="sliderOptionsClick(6)">
+            <img src="../../../assets/imgs/place-to-visit.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Places To Visit</span>
+          </ion-col>
+          <ion-col align-self-center (click)="sliderOptionsClick(7)">
+            <img src="../../../assets/imgs/food-menu.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Food Menu</span>
+          </ion-col>
+          <ion-col align-self-center (click)="sliderOptionsClick(8)">
+            <img src="../../../assets/imgs/food-guide.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">Food Guide</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col (click)="sliderOptionsClick(9)">
+            <img src="../../../assets/imgs/location.png" class="slider-imgs"><br />
+            <span class="slider-imgs-label">EXL Locations</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</div>

@@ -18,15 +18,15 @@ export class DashboardPage implements OnInit {
     speed: 400
   };
 
-  title:string="";
-  visit:any;
+  title: string = "";
+  visit: any;
   formatedDate = "";
-  agendaList:any;
-  months:any;
+  agendaList: any;
+  months: any;
 
   constructor(private userCtrl: UserDetailService,
     public progresBarService: ProgressBarService,
-    public apiCtrl : NetworkApiService,
+    public apiCtrl: NetworkApiService,
     private toastCtrl: ToastService,
     private appStorage: AppStorageService,
     private router: Router) { }
@@ -35,61 +35,118 @@ export class DashboardPage implements OnInit {
 
     this.visit = this.userCtrl.getSelectedVisit();
     this.months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    this.formatedDate = await this.userCtrl.getVisitDate(this.visit.startDate,this.visit.lastDate);
+    this.formatedDate = await this.userCtrl.getVisitDate(this.visit.startDate, this.visit.lastDate);
     let visitLists = await this.userCtrl.getClientVisit();
 
     try {
       this.progresBarService.show();
       let response = await this.apiCtrl.getAgendaLists(this.visit.id);
       this.progresBarService.hide();
-      if (response.response.isSuccess == 'true' && response.response.data.length > 0){
+      if (response.response.isSuccess == 'true' && response.response.data.length > 0) {
 
         this.agendaList = response.response.data;
 
-      }else{
-        if(response.response.error != null && response.response.error.error_code == 401){
+      } else {
+        if (response.response.error != null && response.response.error.error_code == 401) {
 
           this.appStorage.clearAllItems();
           this.userCtrl.tokenExpired();
 
-        }else{
+        } else {
           this.toastCtrl.showSimpleToast(Constants.NoAgendaAvailable);
         }
 
       }
-    
+
     } catch (error) {
       this.progresBarService.hide();
       console.log("error", JSON.stringify(error));
       this.toastCtrl.showSimpleToast(error);
     }
-  
+
   }
 
-  getDay(agendaDate:any){
+  getDay(agendaDate: any) {
     let date = new Date(agendaDate);
     return date.getDate();
   }
 
-  getMonth(agendaDate:any){
-   let date = new Date(agendaDate);
-   return this.months[date.getMonth()];
+  getMonth(agendaDate: any) {
+    let date = new Date(agendaDate);
+    return this.months[date.getMonth()];
   }
 
-  getYear(agendaDate:any){
-   let date = new Date(agendaDate);
-   return date.getFullYear();
+  getYear(agendaDate: any) {
+    let date = new Date(agendaDate);
+    return date.getFullYear();
   }
-    
-  GoToDashboardView(agenda:any){
-    if(agenda.TotalEvents > 0){
+
+  GoToDashboardView(agenda: any) {
+    if (agenda.TotalEvents > 0) {
       this.userCtrl.setSelectedAgenda(agenda);
-      this.router.navigate(['/agenda-details'], { replaceUrl: true }); 
-    }else {
+      this.router.navigate(['/agenda-details'], { replaceUrl: true });
+    } else {
       this.toastCtrl.showSimpleToast(Constants.EventNotAvailable);
     }
   }
-   
+
+  sliderOptionsClick(id) {
+
+    switch (id) {
+      case 0: {
+        //statements; 
+        break;
+      }
+      case 1: {
+        //statements; 
+        this.router.navigate(['/visitor-profile'], { replaceUrl: true });
+        break;
+      }
+      case 2: {
+        //statements; 
+        break;
+      }
+      case 3: {
+        //statements; 
+        this.router.navigate(['/make-request'], { replaceUrl: true });
+        break;
+      }
+      case 4: {
+        //statements; 
+        this.router.navigate(['/feedback'], { replaceUrl: true });
+        break;
+      }
+      case 5: {
+        //statements; 
+        this.router.navigate(['/emergency-contacts'], { replaceUrl: true });
+        break;
+      }
+      case 6: {
+        //statements; 
+        break;
+      }
+      case 7: {
+        //statements; 
+        break;
+      }
+      case 8: {
+        //statements; 
+        break;
+      }
+      case 9: {
+        //statements; 
+        break;
+      }
+      default: {
+        //statements; 
+        break;
+      }
+    }
+
+
+  }
+
+
 }
 
 

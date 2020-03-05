@@ -27,17 +27,19 @@ export class EventDetailsPage implements OnInit {
 
   async ngOnInit() {
 
-  //   this.eventDetails = this.userCtrl.getSelectedEvent();
-  //   this.startDate = new Date(this.eventDetails.EventDate);
-    
-  //   for (var i = 0; i < this.eventDetails.Participants.length; i++) {
+    this.eventDetails = this.userCtrl.getSelectedEvent();
 
-  //     if (i % 2 == 0) {
-  //         this.colorToShow.push(this.colors[1]);
-  //     } else {
-  //        this.colorToShow.push(this.colors[0]);
-  //     }
-  // }
+    console.log("event details :- " , JSON.stringify(this.eventDetails.type));
+    this.startDate = new Date(this.eventDetails.EventDate);
+    
+    for (var i = 0; i < this.eventDetails.Participants.length; i++) {
+
+      if (i % 2 == 0) {
+          this.colorToShow.push(this.colors[1]);
+      } else {
+         this.colorToShow.push(this.colors[0]);
+      }
+  }
 
   }
 
@@ -47,10 +49,62 @@ export class EventDetailsPage implements OnInit {
     return color;
   }
 
+ getLetterOf(name:any) {
+    let nameWords = name.split(' ');
+    let nameChars = "";
+    if (nameWords.length < 1) {
+        return "";
+    }
+    let first = nameWords[0];
+    nameChars += first.substring(0, 1);
+    if (nameWords.length > 1) {
+        let l = nameWords.length - 1;
+        let last = nameWords[l];
+        nameChars += last.substring(0, 1);
+    }
+    // console.log("name chars " + nameChars);
+    return nameChars;
+}
 }
 
 
-
+// {
+//   "EventId":7009,
+//   "EventTitle":"Dinne With Utkarash",
+//   "EventDate":"16 Jan 2019",
+//   "StartTime":"18:00",
+//   "EndTime":"22:00",
+//   "EventDesc":"This is Dinne for the Day",
+//   "type":"Dinner",
+//   "location":null,
+//   "description":null,
+//   "image":null,
+//   "geoCoordinate":null,
+//   "Participants":[
+//      {
+//         "ParticipantId":6027,
+//         "Employee_id":"97420",
+//         "fullName":"Hargopal Singh",
+//         "description":"",
+//         "designation":"Senior Manager",
+//         "LOB":"Global Technology",
+//         "profilePicUrl":""
+//      }
+//   ],
+//   "Visitors":[
+//      {
+//         "VisitId":0,
+//         "Employee_id":"6066",
+//         "fullName":"Utkarsh Joshi",
+//         "description":"Utkarsh is taking the KT of this application from Nasib",
+//         "designation":"",
+//         "profilePicUrl":"ImgCustomer_06066.png",
+//         "IsExecutiveleadership":false,
+//         "IsMeetingParticipant":false,
+//         "metaData":null
+//      }
+//   ]
+// }
 
 
 // {
