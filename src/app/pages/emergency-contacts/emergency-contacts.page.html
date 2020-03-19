@@ -1,12 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Emergency Contacts</ion-title>
+  <ion-toolbar class="newbackgroundcolor">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="lable-title">
+      Emergency Contacts
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="--background: #EDF2FB">
 
-  <ion-card class="list-item-card" (click)="funItemClickEvent(item)" *ngFor="let item of contactsData">
+  <ion-card class="list-item-card"  *ngFor="let item of contactsData">
     <ion-grid class="card-grid">
       <ion-row>
 

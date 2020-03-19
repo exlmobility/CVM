@@ -15,7 +15,7 @@ import { Constants } from 'src/app/utils/Constants';
 export class FeedbackPage implements OnInit {
 
   selectedCategory: any
-  feedbackCategories: any[]
+  feedbackCategories: any[0]
   comment: string = ""
   clientVisitData: any;
   selected_cat_id: number = 0;
@@ -30,7 +30,7 @@ export class FeedbackPage implements OnInit {
 
   async ngOnInit() {
 
-    this.clientVisitData = await this.userCtrl.getSelectedVisit();
+    this.clientVisitData =  this.userCtrl.getSelectedVisit();
     try {
       this.progresBarService.show();
       let response = await this.apiCtrl.getFeedbackCategories();
@@ -65,9 +65,9 @@ export class FeedbackPage implements OnInit {
 
   }
 
-  onCategorySelect(id:number) {
-    console.log("Change:: " + id);
-    this.selected_cat_id = id;
+  onCategorySelect(data:any) {
+    // console.log("Change:: " + data);
+    this.selected_cat_id = data;
   }
 
 

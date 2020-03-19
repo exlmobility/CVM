@@ -141,9 +141,9 @@ export class NetworkApiService {
     return this.postData("/api/APP_ClientVisit/VisitorProfile", this.userDetailCtrl.authToken, param)
   }
 
-  async getEmergencyContacts() {
+  async getEmergencyContacts(visi_id:any) {
     var param = {
-      VisitId: "6022",
+      VisitId: visi_id,
       metaData: this.userDetailCtrl.getMetaData()
     };
     if (!this.isConnectedToNetwork) {
